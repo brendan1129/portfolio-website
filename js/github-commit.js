@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function fetchLatestCommit() {
         // Make an AJAX request to your PHP script
         // Adjust the URL if your PHP script is in a different location
-        fetch('get_latest_commit.php')
+        fetch('../get_latest_commit.php')
             .then(response => {
                 // Check if the HTTP status is OK (200-299)
                 if (!response.ok) {
