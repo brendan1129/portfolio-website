@@ -284,6 +284,93 @@ header nav a:hover {
     color: #050A44; /* Very dark blue on hover */
 }
 
+/* Style for the new Latest Commit section */
+.latest-commit-section {
+    background-color: #f4f4f4; /* Light grey background */
+    color: #141619; /* Normal text color */
+    padding: 40px 0; /* Padding top and bottom */
+    margin-top: 40px; /* Space above this section */
+}
+
+.latest-commit-section .container {
+    /* Inherits container styles from your existing CSS */
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    overflow: hidden;
+    padding: 0 20px;
+    text-align: center; /* Center the content within the container */
+}
+
+.latest-commit-section h2 {
+    /* Inherits h2 styles from main h2, but can be overridden */
+    text-align: center;
+    margin-bottom: 20px; /* Reduced margin for this section's heading */
+    font-size: 30px; /* Slightly smaller heading than main h2 */
+    color: #050A44;
+}
+
+/* Style for the commit information div */
+#latest-commit-info {
+    background-color: #fff; /* White background for the info box */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: left; /* Align text left within the info box */
+    max-width: 700px; /* Limit the width of the info box */
+    margin: 20px auto; /* Center the info box and add space */
+}
+
+#latest-commit-info p {
+    margin-bottom: 10px; /* Space between commit details paragraphs */
+    line-height: 1.5;
+}
+
+#latest-commit-info p:last-child {
+    margin-bottom: 0; /* Remove margin from the last paragraph */
+}
+
+#latest-commit-info a {
+    color: #0A21C0; /* Bright blue for the commit link */
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+#latest-commit-info a:hover {
+    color: #050A44; /* Very dark blue on hover */
+    text-decoration: underline; /* Add underline on hover */
+}
+
+/* Style for the error message */
+#commit-error {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+/* Responsive adjustments for the new section */
+@media (max-width: 768px) {
+    .latest-commit-section {
+        padding: 30px 0; /* Adjust padding on mobile */
+        margin-top: 30px; /* Adjust margin on mobile */
+    }
+
+    .latest-commit-section h2 {
+        font-size: 24px; /* Adjust heading size on mobile */
+        margin-bottom: 15px;
+    }
+
+    #latest-commit-info {
+        padding: 15px; /* Adjust info box padding on mobile */
+        margin: 15px auto; /* Adjust info box margin on mobile */
+    }
+
+    #latest-commit-info p {
+        margin-bottom: 8px; /* Adjust paragraph margin on mobile */
+        font-size: 15px; /* Slightly smaller text on mobile */
+    }
+}
+
 /* Basic Form Styling */
 #contactForm {
     max-width: 600px; /* Limit the form width */
