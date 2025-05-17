@@ -1,0 +1,476 @@
+/* Remove the unused noto-sans-normal-text rule */
+/*
+.noto-sans-normal-text {
+  font-family: "Noto Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+*/
+
+/* Basic CSS Reset (optional but recommended) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Basic body padding adjusted to match fixed header */
+body {
+    font-family: 'Noto Sans', sans-serif; /* Use the Noto Sans font */
+    line-height: 1.6;
+    background-color: #B3B4BD; /* Default background for pages without specific background */
+    color: #141619; /* Normal text color */
+    padding-top: 60px; /* Space for the fixed header */
+    margin: 0; /* Ensure no default body margin */
+    min-height: 100vh; /* Ensure body is at least viewport height */
+    display: flex; /* Use flexbox to push footer down */
+    flex-direction: column; /* Stack content vertically */
+}
+
+/* Main content area styling */
+main {
+    flex-grow: 1; /* Allows main content to fill available space, pushing footer down */
+    padding: 60px 0; /* Add padding top and bottom to main content */
+    display: block; /* Ensure main is block-level */
+    /* Removed min-height calc here, flex-grow handles pushing footer */
+}
+
+main .container {
+     /* .container styles are already defined and work inside main */
+     width: 90%; /* Slightly wider container */
+     max-width: 1200px; /* Max width for larger screens */
+     margin: auto;
+     overflow: hidden;
+     padding: 0 20px; /* Add some padding on the sides */
+}
+
+
+/* Page-Specific Backgrounds (applied to main content area via body class) */
+
+body.about-page main {
+    background-color: #f4f4f4; /* Original #about background */
+    color: #141619; /* Original #about text color */
+}
+
+body.projects-page main {
+    background-color: #B3B4BD; /* Original #projects background */
+    color: #141619; /* Original #projects text color */
+}
+
+body.contact-page main {
+    background-color: #2C2E3A; /* Original #contact background */
+    color: #B3B4BD; /* Original #contact text color */
+}
+
+body.services-page main {
+    background-color: #f4f4f4; /* Example background, choose from your palette */
+    color: #141619; /* Example text color */
+}
+
+
+/* Styles for headings inside main */
+main h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 36px;
+    color: #050A44; /* Very dark blue for section headings */
+}
+
+/* Header Styling */
+header {
+    background: #050A44; /* Very dark blue background */
+    color: #B3B4BD; /* Light grey text */
+    padding: 10px 0;
+    min-height: 60px; /* Fixed height for header */
+    position: fixed; /* Fix header to the top */
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Ensure header is above other content */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+header .container {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space out logo and nav */
+    align-items: center; /* Vertically align items */
+}
+
+header h1 {
+    margin-left: 1em;
+    font-size: 24px;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 1em;
+}
+
+header nav ul li {
+    display: inline-block; /* Display list items inline */
+    margin-left: 20px; /* Add space between nav items */
+}
+
+header nav a {
+    color: #B3B4BD; /* Light grey link color */
+    text-decoration: none;
+    font-weight: 500; /* Slightly bolder for nav links */
+    transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+header nav a:hover {
+    color: #0A21C0; /* Bright blue on hover */
+}
+
+/* Section Styling (Only Hero remains as a 'section' acting as a page area) */
+/* The previous general section padding can likely be removed or adjusted */
+/* section { padding: 60px 0; } - This was for single page layout sections, may not be needed now */
+
+
+/* Hero Section */
+#hero {
+    background: linear-gradient(to right, #050A44, #2C2E3A); /* Gradient background */
+    color: #B3B4BD; /* Light grey text */
+    text-align: center;
+    padding: 100px 0; /* More padding for a larger hero area */
+    display: flex; /* Use flexbox to center content */
+    flex-direction: column; /* Stack container and keyboard vertically */
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 60px); /* Full viewport height minus header height */
+    position: relative; /* Needed for absolute positioning of keys */
+    overflow: hidden; /* Hide keys if they go outside hero boundaries */
+}
+
+#hero .container {
+    z-index: 1; /* Ensure hero content is above the keys */
+    position: relative; /* Needed for z-index to work */
+}
+
+/* Styles for the Keyboard Effect */
+.keyboard-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Make container full height of hero to track mouse */
+    pointer-events: none; /* IMPORTANT: Allows clicks to pass through to content */
+    display: flex; /* Use flexbox to lay out keys horizontally */
+    align-items: flex-end; /* Align keys to the bottom */
+}
+
+.piano-key {
+    flex-grow: 1; /* Keys will share the width equally */
+    height: 0; /* Initial height */
+    background-color: rgba(10, 33, 192, 0.3); /* Bright blue with transparency */
+    transition: height 0.25s ease-in-out; /* Smooth transition for height changes */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Optional: Add a subtle border between keys */
+.piano-key + .piano-key {
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#hero h2 {
+    margin: 0 0 10px 0;
+    font-size: 48px; /* Larger font size for hero heading */
+    color: #0A21C0; /* Bright blue for the main heading */
+}
+
+#hero p {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.btn {
+    display: inline-block;
+    background: #0A21C0; /* Bright blue background */
+    color: #B3B4BD; /* Light grey text */
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #050A44; /* Darker blue on hover */
+}
+
+/* Styles for the About content (used within main on about.html) */
+/* Changed selector from #about .about-content to just .about-content */
+.about-content {
+    display: flow-root; /* Contains floats */
+    /* Or you could use overflow: hidden; if flow-root isn't supported everywhere,
+       or even flexbox/grid for more complex layouts if needed */
+}
+
+.profile-img {
+    width: 150px; /* Set a width for the image */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 50%; /* Make the image round */
+    float: left; /* Float the image to the left */
+    margin: 0 20px 20px 0; /* Add margin: top right bottom left */
+    shape-outside: circle(); /* Makes text wrap tightly around a round image */
+    /* shape-outside may require the image to have display: block; or display: inline-block;
+       but float usually handles this */
+}
+
+/* Styles for paragraphs within about content */
+/* Changed selector from #about p to .about-content p */
+.about-content p {
+    margin-bottom: 15px; /* Add space between paragraphs */
+}
+
+/* Changed selector from #about p:last-child to .about-content p:last-child */
+.about-content p:last-child {
+    margin-bottom: 0; /* Remove margin from the last paragraph */
+}
+
+/* Styles for the Projects grid (used within main on projects.html) */
+/* Selector remains .project-grid */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 30px; /* Increased gap */
+}
+
+.project-item {
+    background: #fff; /* White background for project cards */
+    padding: 25px;
+    border-radius: 8px; /* Slightly larger border radius */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* More pronounced shadow */
+    transition: transform 0.3s ease; /* Add a subtle hover effect */
+}
+
+.project-item:hover {
+    transform: translateY(-5px); /* Lift the card slightly on hover */
+}
+
+.project-item img {
+    max-width: 100%;
+    height: auto;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 15px;
+    border-radius: 4px; /* Rounded corners for images */
+}
+
+.project-item h3 {
+    margin-top: 0;
+    color: #2C2E3A; /* Darker grey for project titles */
+}
+
+.project-item p {
+    margin-bottom: 15px;
+}
+
+.project-item a {
+    display: inline-block;
+    margin-right: 15px;
+    color: #0A21C0; /* Bright blue for project links */
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.project-item a:hover {
+    color: #050A44; /* Very dark blue on hover */
+}
+
+/* Basic Form Styling */
+#contactForm {
+    max-width: 600px; /* Limit the form width */
+    margin: 20px auto; /* Center the form and add space */
+    padding: 20px;
+    background-color: #fff; /* White background for the form area */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: #141619; /* Dark text inside the form */
+}
+
+.form-group {
+    margin-bottom: 15px; /* Space between form groups */
+}
+
+.form-group label {
+    display: block; /* Make labels block-level for stacking */
+    margin-bottom: 5px; /* Space below label */
+    font-weight: bold;
+    color: #2C2E3A; /* Darker grey/blue for labels */
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: 100%; /* Make inputs fill container width */
+    padding: 10px;
+    border: 1px solid #B3B4BD; /* Light border */
+    border-radius: 4px;
+    font-family: 'Noto Sans', sans-serif; /* Use your font */
+    font-size: 16px;
+    box-sizing: border-box; /* Include padding/border in element's total width */
+}
+
+.form-group textarea {
+    resize: vertical; /* Allow vertical resizing only */
+}
+
+#contactForm button[type="submit"] {
+    /* Styles inherited from .btn class */
+    display: block; /* Make button block-level */
+    width: 100%; /* Make button full width */
+    padding: 12px; /* Adjust padding for a larger button */
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* Style for other contact links container if needed */
+.contact-links {
+    margin-top: 30px; /* Space above links */
+    text-align: center; /* Center the links if desired */
+}
+
+
+/* Optional: Add styles for success/error messages (requires JavaScript) */
+.status-message {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.status-message.success {
+    background-color: #d4edda; /* Light green */
+    color: #155724; /* Dark green */
+    border: 1px solid #c3e6cb;
+}
+
+.status-message.error {
+    background-color: #f8d7da; /* Light red */
+    color: #721c24; /* Dark red */
+    border: 1px solid #f5c6cb;
+}
+/* Styles for Contact content (used within main on contact.html) */
+/* Added to center content on the contact page */
+body.contact-page main .container {
+    text-align: center; /* Apply text-align to container on contact page */
+}
+
+/* Contact links within main */
+/* Changed selectors from #contact a and #contact a:hover to target links within main on contact page */
+body.contact-page main a {
+    color: #050A44; /* Bright blue for contact links */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+body.contact-page main a:hover {
+    color: #B3B4BD; /* Light grey on hover */
+}
+
+
+/* Footer Styling */
+footer {
+    /* Removed flex-shrink: 0; - min-height on body and flex-grow on main are better */
+    background: #141619; /* Dark grey background */
+    color: #B3B4BD; /* Light grey text */
+    text-align: center;
+    padding: 20px 0;
+    font-size: 14px;
+    margin-top: auto; /* Push footer to the bottom */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: column; /* Stack logo and nav vertically */
+        align-items: flex-start;
+    }
+
+    header h1 {
+        margin-bottom: 10px;
+    }
+
+    header nav ul li {
+        margin-left: 0;
+        margin-right: 15px; /* Add space between stacked nav items */
+    }
+
+    #hero {
+         padding: 80px 0; /* Adjust hero padding on mobile */
+         min-height: calc(100vh - 60px); /* Keep full height */
+    }
+
+    #hero h2 {
+        font-size: 36px; /* Adjust hero heading size */
+    }
+
+    #hero p {
+        font-size: 18px;
+    }
+
+    .btn {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+
+     /* Adjust heading sizes in main on mobile */
+    main h2 {
+        font-size: 30px;
+        margin-bottom: 30px;
+    }
+
+    main {
+        padding: 40px 0; /* Adjust main padding on smaller screens */
+        /* min-height handled by flexbox */
+    }
+
+    /* About image responsive styles */
+    .profile-img { /* Changed selector from #about .profile-img */
+        float: none; /* Remove float on small screens */
+        display: block; /* Make image a block element */
+        margin: 0 auto 20px auto; /* Center the image and add bottom margin */
+        border-radius: 8px; /* Maybe change to slightly rounded corners on mobile */
+        shape-outside: none; /* Remove shape-outside on mobile */
+        width: 100px; /* Make image smaller on mobile */
+    }
+
+    /* About content responsive layout */
+    .about-content { /* Changed selector from #about .about-content */
+         display: block; /* Revert to block layout on small screens */
+    }
+
+
+    /* Project item responsive styles */
+    .project-item {
+        padding: 20px; /* Adjust project item padding */
+    }
+}
+/* Styles for the bird animation */
+.bird-container {
+    position: relative; /* Needed for absolute positioning of the bird inside */
+    width: 100%; /* Make it span the width of its parent (.container) */
+    height: 100px; /* Give it a fixed height, adjust as needed */
+    margin-top: 30px; /* Add some space above the container */
+    overflow: hidden; /* Hide the bird if it goes outside this container */
+}
+
+.bird-sprite {
+    position: absolute; /* Position relative to the bird-container */
+    bottom: 0; /* Start at the bottom of the container */
+    left: 0; /* Start at the left edge */
+    display: block; /* Ensure display block for positioning */
+    width: 50px; /* Set the bird's width, adjust as needed */
+    height: auto; /* Maintain aspect ratio */
+    transform-origin: center center; /* Set origin for flipping */
+    /* Remove default transitions on position/transform if any global ones exist */
+    transition: none;
+}
+/* Removed redundant #about, #projects, #contact section styles */
+/* Removed redundant #about h2, #projects h2, #contact h2 styles */

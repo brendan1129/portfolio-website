@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BNH Dev - Contact</title> <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="contact-page"> <header>
+        <div class="container">
+            <h1>BNH Software Development</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h2>Get in Touch</h2>
+            <div id="formStatusMessage" class="status-message"></div>
+            <script src="js/contact-form.js" defer></script>
+            <p><strong>I'm always open to exciting offers in the world of technology.</strong></p>
+            <form id="contactForm" action="process_form.php" method="post">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject:</label>
+                    <input type="text" id="subject" name="subject">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="6" required></textarea>
+                </div>
+
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+
+            <div class="contact-links">
+                 <p>LinkedIn: <a href="https://www.linkedin.com/in/brendan-hannum-497010224/" target="_blank">Brendan Hannum</a></p>
+                 <p>GitHub: <a href="https://github.com/brendan1129" target="_blank">brendan1129</a></p>
+                 <p>Itch.io: <a href="https://brendan-dev.itch.io/" target="_blank">brendan-dev</a></p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 BNH Software Development. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
