@@ -8,10 +8,20 @@ document.addEventListener('DOMContentLoaded', function() {
         // Adjust the URL if your PHP script is in a different location
         fetch('get_latest_commit.php')
             .then(response => {
+                // Check if the HTTP status is OK (200-299)
                 if (!response.ok) {
-                    // If the HTTP status is not OK (e.g., 500), throw an error
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                     // If not OK, read the response text and throw an error
+                    return response.text().then(text => {
+                        throw new Error(`HTTP error! status: ${response.status}, Response: ${text}`);
+                    });
                 }
+                // If OK, clone the response so we can read it twice (once as text, once as json)
+                const clonedResponse = response.clone();
+                // First, read as text for debugging
+                clonedResponse.text().then(text => {
+                    console.log('Raw response text:', text); // Log the raw text
+                });
+                // Then, proceed to parse as JSON
                 return response.json();
             })
             .then(data => {
@@ -34,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <p><strong>Author:</strong> ${data.author}</p>
                         <p><strong>Date:</strong> ${formattedDate}</p>
                         <p><strong>SHA:</strong> ${data.sha}</p>
-                        <p><a href="${data.url}" target="_blank">View Commit on GitHub</a></p>
+                        <p><strong>Repository:</strong> ${data.repository}</p> <p><a href="${data.url}" target="_blank">View Commit on GitHub</a></p>
                     `;
                 }
             })
@@ -43,6 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.error('Error fetching latest commit:', error);
                 commitInfoDiv.style.display = 'none'; // Hide loading message
                 errorDiv.style.display = 'block'; // Show error message
+                errorDiv.textContent = `Failed to load latest commit: ${error.message}`; // Display error details
             });
     }
 

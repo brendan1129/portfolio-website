@@ -1,9 +1,15 @@
 <?php
-// Ensure Composer autoloader is included
-require 'vendor/autoload.php';
+// Enable error reporting for debugging (remove in production)
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-use Github\Client;
-use Symfony\Component\HttpClient\HttplugClient;
+// Ensure Composer autoloader is included
+// This path assumes vendor/ is in the same directory as this script
+require __DIR__ . '/vendor/autoload.php';
+
+use Github\Client; // This is the GitHub API Client class
+use GuzzleHttp\Client as GuzzleClient; // Corrected: Use a different alias for Guzzle's Client class
 
 // --- Configuration ---
 // Replace with your GitHub username
@@ -15,8 +21,12 @@ $githubToken = ''; // Replace with your PAT or leave empty for public user event
 
 // --- Fetch Latest Commit Across All Repos ---
 try {
-    $httpClient = new HttplugClient();
-    $client = Client::createWithHttpClient($httpClient);
+    // Instantiate Guzzle HTTP Client using the new alias
+    $guzzleClient = new GuzzleClient();
+
+    // Create GitHub Client using the Guzzle client
+    // knplabs/github-api v3+ can accept a PSR-18 client directly
+    $client = Client::createWithHttpClient($guzzleClient); // This refers to Github\Client
 
     // Authenticate if a token is provided
     // Authentication is recommended for higher rate limits, even for public data
@@ -25,8 +35,9 @@ try {
     }
 
     // Fetch recent public events for the user
-    // We limit the results to a reasonable number (e.g., 30) and paginate if necessary
+    // We limit the results to a reasonable number (e.g., 100) and paginate if necessary
     // to find the most recent PushEvent.
+    // The GitHub API limits event fetching to the last 300 public events.
     $events = $client->api('user')->publicEvents($githubUsername, ['per_page' => 100]); // Fetch up to 100 recent events
 
     $latestCommitData = null;
@@ -73,14 +84,15 @@ try {
     } else {
         // No recent PushEvents with commits found in the fetched events
         header('Content-Type: application/json');
-        echo json_encode(['error' => 'No recent commits found for this user.']);
+        echo json_encode(['error' => 'No recent commits found for this user in the last 300 events.']);
     }
 
-} catch (\RuntimeException $e) {
-    // Handle API errors
+} catch (\Exception $e) { // Catch any Exception, including RuntimeException
+    // Handle API errors or other exceptions
     http_response_code(500); // Internal Server Error
     header('Content-Type: application/json');
-    echo json_encode(['error' => 'Error fetching GitHub user events: ' . $e->getMessage()]);
+    // Output the actual error message for debugging
+    echo json_encode(['error' => 'Server Error: ' . $e->getMessage()]);
 }
 
-?>
+// It's good practice to omit the closing PHP tag if the file contains only PHP
