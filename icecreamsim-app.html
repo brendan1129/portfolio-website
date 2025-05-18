@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ice Cream Simulator - BNH Dev</title>
+    <style>
+        body {
+            font-family: 'Noto Sans', sans-serif; /* Use the Noto Sans font */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Full viewport height */
+            margin: 0;
+            background-color: #f0f0f0; /* Light background */
+            flex-direction: column; /* Stack elements vertically */
+            padding: 20px; /* Add some padding */
+        }
+        #appContainer {
+            width: 800px; /* Match cheerpjCreateDisplay width */
+            height: 600px; /* Match cheerpjCreateDisplay height */
+            border: 1px solid #ccc; /* Optional: Add a border around the app */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+            background-color: white; /* Ensure background is visible if app has transparent parts */
+            margin-bottom: 20px; /* Space below the app */
+        }
+         h1 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #333;
+        }
+    </style>
+    <script src="https://cjrtnc.leaningtech.com/4.0/loader.js"></script>
+</head>
+<body>
+
+    <h1>Ice Cream Simulator</h1>
+
+    <div class = "container-icecream" style="width: 100vw; height: 100svh">
+    </div>
+    <script type = "module">
+        await cheerpjInit({version: 11});
+        // Target the div with id="iceCreamAppDisplay"
+        cheerpjCreateDisplay(-1, -1, document.getElementById("container-icecream"));
+        await cheerpjRunJar("/app/IceCreamSimulator-jdk11.jar");
+    </script>
+
+</body>
+</html>

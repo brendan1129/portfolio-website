@@ -189,7 +189,7 @@ header nav a:hover {
     margin-bottom: 30px;
 }
 
-.btn {
+.main-btn {
     display: inline-block;
     background: #0A21C0; /* Bright blue background */
     color: #B3B4BD; /* Light grey text */
@@ -200,7 +200,7 @@ header nav a:hover {
     transition: background-color 0.3s ease;
 }
 
-.btn:hover {
+.main-btn:hover {
     background-color: #050A44; /* Darker blue on hover */
 }
 
